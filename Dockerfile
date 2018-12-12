@@ -18,7 +18,7 @@ RUN docker-php-ext-configure imap --with-imap-ssl --with-kerberos && \
     docker-php-ext-install soap curl gd zip mbstring imap mysqli pdo pdo_mysql gd iconv intl opcache   && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /var/www/html
+WORKDIR /tmp
 
 #RUN wget ${DOWNLOAD_URL}
 RUN ls
@@ -32,9 +32,7 @@ RUN ls
 COPY . "${WWW_FOLDER}"/
 RUN chown -R ${WWW_USER}:${WWW_GROUP} ${WWW_FOLDER}/* && \
     chown -R ${WWW_USER}:${WWW_GROUP} ${WWW_FOLDER}
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php
-RUN php composer.phar install
+RUN cd /var/www/html && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php && php composer.phar install
 
 ADD deploy/php.ini /usr/local/etc/php/php.ini
 
