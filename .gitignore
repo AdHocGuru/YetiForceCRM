@@ -1,5 +1,7 @@
 /.idea/
+/npm-debug.log
 /vendor/
+/node_modules/
 /cache/*/*
 /cache/*/*/*
 !/cache/*/index.html
