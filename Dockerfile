@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y yarn
 RUN apt-get install -y wget git nodejs vim libfreetype6-dev libxml2-dev libjpeg62-turbo-dev libpng-dev libmcrypt-dev libcurl4-gnutls-dev libssl-dev libc-client2007e-dev libkrb5-dev unzip cron re2c python tree memcached
 
 RUN docker-php-ext-configure imap --with-imap-ssl --with-kerberos && \
-    docker-php-ext-install soap curl gd zip mbstring imap mysqli pdo pdo_mysql gd iconv intl opcache   && \
+    docker-php-ext-install soap curl gd zip mbstring imap exif ldap mysqli pdo pdo_mysql gd iconv intl opcache   && \
     rm -rf /var/lib/apt/lists/*
 
 
