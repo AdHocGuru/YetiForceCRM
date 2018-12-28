@@ -30,6 +30,9 @@ ADD deploy/init.sh /usr/local/bin/init.sh
 RUN chmod u+x /usr/local/bin/init.sh
 
 ADD deploy/crons.conf /root/crons.conf
+
+ADD deploy/docker-php.conf /etc/apache2/conf-enabled/docker-php.conf
+RUN a2enmod headers
 #RUN crontab /root/crons.conf
 
 EXPOSE 80
