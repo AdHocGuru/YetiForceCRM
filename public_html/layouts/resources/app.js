@@ -792,8 +792,9 @@ var App = {},
 				autoclose: true,
 				twelvehour: formatTime,
 				minutestep: 5,
-				ampmSubmit: false
+				ampmSubmit: true,
 			};
+
 			$('.js-clock__btn').on('click', (e) => {
 				e.stopPropagation();
 				let tempElement = $(e.currentTarget).closest('.time').find('input.clockPicker');
@@ -801,7 +802,22 @@ var App = {},
 					tempElement.clockpicker('show');
 				}
 			});
-			elementClockBtn.clockpicker(params);
+
+			let formatTimeString = (timeInput) => {
+				if (params.twelvehour) {
+					params.afterDone = () => { //format time string after picking a value
+						let timeString = timeInput.val(),
+							timeStringFormatted = [timeString.slice(0, timeString.length - 2), ' ', timeString.slice(timeString.length - 2)].join('');
+						timeInput.val(timeStringFormatted);
+					};
+				}
+			}
+			
+			elementClockBtn.each((i, e) => {
+				let timeInput = $(e);
+				formatTimeString(timeInput);
+				timeInput.clockpicker(params);
+			});
 		},
 		registerDataTables: function (table, options = {}) {
 			if ($.fn.dataTable == undefined) {
