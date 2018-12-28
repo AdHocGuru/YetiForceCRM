@@ -633,7 +633,9 @@ class Request
 	{
 		// Referer check if present - to over come && Check for user post authentication.
 		if (isset($_SERVER['HTTP_REFERER']) && \App\User::getCurrentUserId() && (stripos($_SERVER['HTTP_REFERER'], \AppConfig::main('site_URL')) !== 0) && ($this->get('module') !== 'Install')) {
-			throw new \App\Exceptions\Csrf('Illegal request');
+			//TODO !!!!allex
+			// Need correct method
+			//throw new \App\Exceptions\Csrf('Illegal request');
 		}
 	}
 
