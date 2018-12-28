@@ -19,9 +19,9 @@ RUN cd ${WWW_FOLDER} && yarn --modules-folder public_html/libraries
 
 RUN chown -R ${WWW_USER}:${WWW_GROUP} ${WWW_FOLDER}/* && \
     chown -R ${WWW_USER}:${WWW_GROUP} ${WWW_FOLDER}
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php
-RUN php composer.phar install
+#RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#RUN php composer-setup.php
+#RUN php composer.phar install
 
 ADD deploy/php.ini /usr/local/etc/php/php.ini
 
